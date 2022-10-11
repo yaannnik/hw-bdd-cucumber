@@ -45,11 +45,13 @@ end
 # Part 2, Step 3
 Then /^I should (not )?see the following movies: (.*)$/ do |no, movie_list|
   # Take a look at web_steps.rb Then /^(?:|I )should see "([^"]*)"$/
-  if no
-    expect(page).not_to have_content(text)
-  else
-    expect(page).to have_content(text)
-  end
+  movie_list.split(',').each do |movie|
+    if no
+      expect(page).not_to have_content(movie)
+    else
+      expect(page).to have_content(movie)
+    end
+  end  
   # pending "Fill in this step in movie_steps.rb"
 end
 
